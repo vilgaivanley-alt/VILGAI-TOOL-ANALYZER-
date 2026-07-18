@@ -1,16 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VILGAI TOOL ANALYZER</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>VILGAI TOOL ANALYZER</title>
 
-  <h1>VILGAI TOOL ANALYZER</h1>
-  <p>Welcome to the Volatility Analyzer project.</p>
+<link rel="stylesheet" href="style.css">
 
-  <script src="script.js"></script>
+</head><body><header class="topbar">
+    <h1>⚡ VILGAI TOOL ANALYZER</h1>
+    <p>Volatility Analyzer on Deriv API Market</p>
+</header>
+
+<main class="dashboard">
+
+    <section class="market-selector">
+        <label for="market">ACTIVE MARKET</label>
+
+        <select id="market">
+            <option>Volatility 10 Index</option>
+            <option>Volatility 25 Index</option>
+            <option>Volatility 50 Index</option>
+            <option>Volatility 75 Index</option>
+            <option>Volatility 100 Index</option>
+        </select>
+    </section>
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+            <span>ACTIVE TICKS</span>
+            <strong id="tickCount">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>CURRENT PRICE</span>
+            <strong id="currentPrice">0.00</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>SIGNAL STRENGTH</span>
+            <strong id="signalStrength">0%</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>ENGINE STATUS</span>
+            <strong id="engineStatus">READY</strong>
+        </div>
+
+    </section>
+
+    <section class="signal-panel">
+
+        <div class="signal-main">
+            <span>TARGET DIGIT</span>
+            <h2 id="targetDigit">-</h2>
+            <p id="signalMessage">Waiting for analysis...</p>
+        </div>
+
+        <div class="confidence">
+            <span>CONFIDENCE LEVEL</span>
+            <strong id="confidenceLevel">0%</strong>
+
+            <div class="progress-bar">
+                <div id="confidenceBar"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="analysis-panel">
+
+        <h2>📊 MARKET ANALYSIS</h2>
+
+        <div class="analysis-grid">
+
+            <div class="analysis-card">
+                <h3>EVEN / ODD</h3>
+                <p>Even: <strong id="evenPercent">0%</strong></p>
+                <p>Odd: <strong id="oddPercent">0%</strong></p>
+            </div>
+
+            <div class="analysis-card">
+                <h3>OVER / UNDER</h3>
+                <p>Over: <strong id="overPercent">0%</strong></p>
+                <p>Under: <strong id="underPercent">0%</strong></p>
+            </div>
+
+            <div class="analysis-card">
+                <h3>MATCHES / DIFFERS</h3>
+                <p>Matches: <strong id="matchesPercent">0%</strong></p>
+                <p>Differs: <strong id="differsPercent">0%</strong></p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="recent-digits">
+
+        <h2>🔢 RECENT DIGITS</h2>
+
+        <div id="digitContainer" class="digit-container">
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+        </div>
+
+    </section>
+
+    <section class="controls">
+
+        <button id="analyzeButton">
+            🔍 START ANALYSIS
+        </button>
+
+        <button id="resetButton">
+            🔄 RESET ANALYSIS
+        </button>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>VILGAI TOOL ANALYZER © 2026</p>
+</footer>
+
+<script src="script.js"></script>
+
 </body>
 </html>
