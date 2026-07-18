@@ -1,1 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #0d1117;
+    color: white;
+    font-family: Arial, sans-serif;
+}
 
+h1 {
+    text-align: center;
+    color: #00ff88;
+    margin-top: 40px;
+}
+
+p {
+    text-align: center;
+    color: #cccccc;
+    font-size: 18px;
+}
