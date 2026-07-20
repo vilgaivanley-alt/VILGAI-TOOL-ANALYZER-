@@ -244,4 +244,123 @@ if (resetButton) {
         "click",
         resetAnalysis
     );
+}let socket;
+let tickCount = 0;
+let prices = [];
+
+function connectToDeriv() {
+    socket = new WebSocket(
+        "wss://ws.derivws.com/websockets/v3?app_id=1089"
+    );
+
+    socket.onopen = function () {
+        console.log("Connected to Deriv");
+
+        document.getElementById("engineStatus").textContent = "CONNECTED";
+
+        socket.send(JSON.stringify({
+            ticks: "R_10",
+            subscribe: 1
+        }));
+    };
+
+    socket.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+
+        if (data.tick) {
+            tickCount++;
+
+            const price = data.tick.quote;
+
+            prices.push(price);
+
+            if (prices.length > 100) {
+                prices.shift();
+            }
+
+            const tickElement =
+                document.getElementById("tickCount");
+
+            const priceElement =
+                document.getElementById("currentPrice");
+
+            if (tickElement) {
+                tickElement.textContent = tickCount;
+            }
+
+            if (priceElement) {
+                priceElement.textContent =
+                    Number(price).toFixed(2);
+            }
+
+            updateAnalysis();
+        }
+    };
+
+    socket.onerror = function () {
+        document.getElementById("engineStatus").textContent =
+            "ERROR";
+    };
+
+    socket.onclose = function () {
+        document.getElementById("engineStatus").textContent =
+            "DISCONNECTED";
+    };
 }
+
+function updateAnalysis() {
+    if (prices.length < 2) {
+        return;
+    }
+
+    const lastPrice = prices[prices.length - 1];
+
+    const lastDigit = Number(
+        String(lastPrice).replace(".", "").slice(-1)
+    );
+
+    const digitContainer =
+        document.getElementById("digitContainer");
+
+    if (digitContainer) {
+        digitContainer.innerHTML = "";
+
+        const digitElement = document.createElement("span");
+
+        digitElement.textContent = lastDigit;
+
+        digitContainer.appendChild(digitElement);
+    }
+
+    const signalElement =
+        document.getElementById("signalStrength");
+
+    if (signalElement) {
+        signalElement.textContent = "50%";
+    }
+}
+
+function resetAnalysis() {
+    tickCount = 0;
+    prices = [];
+
+    document.getElementById("tickCount").textContent = "0";
+    document.getElementById("currentPrice").textContent = "0.00";
+    document.getElementById("signalStrength").textContent = "0%";
+    document.getElementById("engineStatus").textContent = "READY";
+
+    document.getElementById("digitContainer").innerHTML =
+        "<span>-</span><span>-</span><span>-</span><span>-</span><span>-</span>";
+}
+
+document
+    .getElementById("analyzeButton")
+    .addEventListener("click", function () {
+        connectToDeriv();
+    });
+
+document
+    .getElementById("resetButton")
+    .addEventListener("click", function () {
+        resetAnalysis();
+    });
