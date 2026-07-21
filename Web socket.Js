@@ -68,7 +68,7 @@ function connectToDeriv() {
     };
 
     // If there is an error
-    socket.onerror = function (error) {
+    socket.onerror = function (error) { 
 
         console.log("WebSocket error:", error);
     };
