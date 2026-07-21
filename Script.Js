@@ -363,4 +363,4 @@ document
     .getElementById("resetButton")
     .addEventListener("click", function () {
         resetAnalysis();
-    });
+    }); 
