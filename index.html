@@ -1,133 +1,192 @@
-
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>VILGAI TOOL ANALYZER</title>
-
-<link rel="stylesheet" href="style.css">
-
-</head><body><header class="topbar">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VILGAI TOOL ANALYZER</title>  <link rel="stylesheet" href="Style.css">
+</head><body>  <header class="topbar">
     <h1>⚡ VILGAI TOOL ANALYZER</h1>
     <p>Volatility Analyzer on Deriv API Market</p>
-</header>
+  </header>  <main class="dashboard"><!-- MARKET SELECTOR -->
+<section class="market-selector">
+  <label for="market">ACTIVE MARKET</label>
 
-<main class="dashboard">
+  <select id="market">
+    <option value="R_10">Volatility 10 Index</option>
+    <option value="R_25">Volatility 25 Index</option>
+    <option value="R_50">Volatility 50 Index</option>
+    <option value="R_75">Volatility 75 Index</option>
+    <option value="R_100">Volatility 100 Index</option>
+  </select>
+</section>
 
-    <section class="market-selector">
-        <label for="market">ACTIVE MARKET</label>
+<!-- STATISTICS -->
+<section class="stats-grid">
 
-        <select id="market">
-            <option>Volatility 10 Index</option>
-            <option>Volatility 25 Index</option>
-            <option>Volatility 50 Index</option>
-            <option>Volatility 75 Index</option>
-            <option>Volatility 100 Index</option>
-        </select>
-    </section>
+  <div class="stat-card">
+    <span>ACTIVE TICKS</span>
+    <strong id="tickCount">0</strong>
+  </div>
 
-    <section class="stats-grid">
+  <div class="stat-card">
+    <span>CURRENT PRICE</span>
+    <strong id="currentPrice">0.00</strong>
+  </div>
 
-        <div class="stat-card">
-            <span>ACTIVE TICKS</span>
-            <strong id="tickCount">0</strong>
-        </div>
+  <div class="stat-card">
+    <span>SIGNAL STRENGTH</span>
+    <strong id="signalStrength">0%</strong>
+  </div>
 
-        <div class="stat-card">
-            <span>CURRENT PRICE</span>
-            <strong id="currentPrice">0.00</strong>
-        </div>
+  <div class="stat-card">
+    <span>ENGINE STATUS</span>
+    <strong id="engineStatus">READY</strong>
+  </div>
 
-        <div class="stat-card">
-            <span>SIGNAL STRENGTH</span>
-            <strong id="signalStrength">0%</strong>
-        </div>
+</section>
 
-        <div class="stat-card">
-            <span>ENGINE STATUS</span>
-            <strong id="engineStatus">READY</strong>
-        </div>
+<!-- SIGNAL PANEL -->
+<section class="signal-panel">
 
-    </section>
+  <div class="signal-main">
+    <span>TARGET DIGIT</span>
 
-    <section class="signal-panel">
+    <h2 id="targetDigit">-</h2>
 
-        <div class="signal-main">
-            <span>TARGET DIGIT</span>
-            <h2 id="targetDigit">-</h2>
-            <p id="signalMessage">Waiting for analysis...</p>
-        </div>
+    <p id="signalMessage">
+      Waiting for analysis...
+    </p>
+  </div>
 
-        <div class="confidence">
-            <span>CONFIDENCE LEVEL</span>
-            <strong id="confidenceLevel">0%</strong>
+  <div class="confidence">
 
-            <div class="progress-bar">
-                <div id="confidenceBar"></div>
-            </div>
-        </div>
+    <span>CONFIDENCE LEVEL</span>
 
-    </section>
+    <strong id="confidenceLevel">0%</strong>
 
-    <section class="analysis-panel">
+    <div class="progress-bar">
+      <div id="confidenceBar"></div>
+    </div>
 
-        <h2>📊 MARKET ANALYSIS</h2>
+  </div>
 
-        <div class="analysis-grid">
+</section>
 
-            <div class="analysis-card">
-                <h3>EVEN / ODD</h3>
-                <p>Even: <strong id="evenPercent">0%</strong></p>
-                <p>Odd: <strong id="oddPercent">0%</strong></p>
-            </div>
+<!-- DIGIT ANALYSIS -->
+<section class="analysis-panel">
 
-            <div class="analysis-card">
-                <h3>OVER / UNDER</h3>
-                <p>Over: <strong id="overPercent">0%</strong></p>
-                <p>Under: <strong id="underPercent">0%</strong></p>
-            </div>
+  <h2>DIGIT ANALYSIS</h2>
 
-            <div class="analysis-card">
-                <h3>MATCHES / DIFFERS</h3>
-                <p>Matches: <strong id="matchesPercent">0%</strong></p>
-                <p>Differs: <strong id="differsPercent">0%</strong></p>
-            </div>
+  <div class="digit-grid">
 
-        </div>
+    <div class="digit-card">
+      <span>DIGIT 0</span>
+      <strong id="digit0">0%</strong>
+    </div>
 
-    </section>
+    <div class="digit-card">
+      <span>DIGIT 1</span>
+      <strong id="digit1">0%</strong>
+    </div>
 
-    <section class="recent-digits">
+    <div class="digit-card">
+      <span>DIGIT 2</span>
+      <strong id="digit2">0%</strong>
+    </div>
 
-        <h2>🔢 RECENT DIGITS</h2>
+    <div class="digit-card">
+      <span>DIGIT 3</span>
+      <strong id="digit3">0%</strong>
+    </div>
 
-        <div id="digitContainer" class="digit-container">
-            <span>-</span>
-            <span>-</span>
-            <span>-</span>
-            <span>-</span>
-            <span>-</span>
-        </div>
+    <div class="digit-card">
+      <span>DIGIT 4</span>
+      <strong id="digit4">0%</strong>
+    </div>
 
-    </section>
+    <div class="digit-card">
+      <span>DIGIT 5</span>
+      <strong id="digit5">0%</strong>
+    </div>
 
-    <section class="controls">
+    <div class="digit-card">
+      <span>DIGIT 6</span>
+      <strong id="digit6">0%</strong>
+    </div>
 
-        <button id="analyzeButton">
-            🔍 START ANALYSIS
-        </button>
+    <div class="digit-card">
+      <span>DIGIT 7</span>
+      <strong id="digit7">0%</strong>
+    </div>
 
-        <button id="resetButton">
-            🔄 RESET ANALYSIS
-        </button>
+    <div class="digit-card">
+      <span>DIGIT 8</span>
+      <strong id="digit8">0%</strong>
+    </div>
 
-    </section>
+    <div class="digit-card">
+      <span>DIGIT 9</span>
+      <strong id="digit9">0%</strong>
+    </div>
 
-</main>
+  </div>
 
-<footer>
-    <p>VILGAI TOOL ANALYZER © 2026</p>
-</footer>
+</section>
 
-<script src="Script.Js"></script>
+<!-- STRATEGIES -->
+<section class="strategies-panel">
 
-</body>
+  <h2>STRATEGIES</h2>
+
+  <div class="strategy-grid">
+
+    <div class="strategy-card">
+      <h3>MATCHES</h3>
+      <p id="matches">Waiting...</p>
+    </div>
+
+    <div class="strategy-card">
+      <h3>DIFFERS</h3>
+      <p id="differs">Waiting...</p>
+    </div>
+
+    <div class="strategy-card">
+      <h3>OVER</h3>
+      <p id="over">Waiting...</p>
+    </div>
+
+    <div class="strategy-card">
+      <h3>UNDER</h3>
+      <p id="under">Waiting...</p>
+    </div>
+
+    <div class="strategy-card">
+      <h3>EVEN</h3>
+      <p id="even">Waiting...</p>
+    </div>
+
+    <div class="strategy-card">
+      <h3>ODD</h3>
+      <p id="odd">Waiting...</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONNECTION -->
+<section class="connection-panel">
+
+  <h2>DERIV CONNECTION</h2>
+
+  <p id="connectionStatus">
+    Connecting to Deriv...
+  </p>
+
+  <button id="connectButton">
+    CONNECT TO DERIV
+  </button>
+
+</section>
+
+  </main>  <!-- JAVASCRIPT FILES -->  <script src="Statistics.Js"></script>  <script src="Alerts.Js"></script>  <script src="Web socket.Js"></script>  <script src="Script.Js"></script></body>
 </html>
