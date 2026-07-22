@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VILGAI TOOL ANALYZER</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #050b14;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 25px 10px;
+      border-bottom: 1px solid #17344a;
+    }
+
+    header h1 {
+      color: #00f0ff;
+      font-size: 26px;
+    }
+
+    header p {
+      margin-top: 8px;
+      color: #8fa7b8;
+    }
+
+    .dashboard {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .status {
+      margin: 20px 0;
+      padding: 15px;
+      text-align: center;
+      background: #0b1522;
+      border: 1px solid #17344a;
+      border-radius: 10px;
+    }
+
+    .status span {
+      color: #00ff88;
+      font-weight: bold;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: #0b1522;
+      border: 1px solid #17344a;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .card h3 {
+      color: #8fa7b8;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card strong {
+      font-size: 28px;
+      color: #00f0ff;
+    }
+
+    .panel {
+      margin-top: 20px;
+      padding: 25px;
+      background: #0b1522;
+      border: 1px solid #17344a;
+      border-radius: 12px;
+    }
+
+    .panel h2 {
+      color: #00f0ff;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #00f0ff;
+      color: #050b14;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <header>
+      <h1>⚡ VILGAI TOOL ANALYZER</h1>
+      <p>Professional Market Analysis Dashboard</p>
+    </header>
+
+    <div class="status">
+      ENGINE STATUS:
+      <span id="engineStatus">READY</span>
+    </div>
+
+    <section class="stats">
+
+      <div class="card">
+        <h3>ACTIVE TICKS</h3>
+        <strong id="tickCount">0</strong>
+      </div>
+
+      <div class="card">
+        <h3>CURRENT PRICE</h3>
+        <strong id="currentPrice">0.00</strong>
+      </div>
+
+      <div class="card">
+        <h3>SIGNAL STRENGTH</h3>
+        <strong id="signalStrength">0%</strong>
+      </div>
+
+    </section>
+
+    <section class="panel">
+      <h2>🎯 ANALYZER STATUS</h2>
+      <p id="message">
+        Dashboard foundation is working successfully.
+      </p>
+
+      <button onclick="testDashboard()">
+        TEST DASHBOARD
+      </button>
+    </section>
+
+  </div>
+
+  <script>
+    function testDashboard() {
+      document.getElementById("engineStatus").textContent = "WORKING";
+      document.getElementById("tickCount").textContent = "1";
+      document.getElementById("currentPrice").textContent = "100.00";
+      document.getElementById("signalStrength").textContent = "50%";
+      document.getElementById("message").textContent =
+        "The dashboard test was successful!";
+    }
+  </script>
+
+</body>
+</html>
